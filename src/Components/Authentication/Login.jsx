@@ -8,7 +8,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
 
-    const { login } = useContext(AuthContext)
+    const { login, googleSignIn } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -35,6 +35,9 @@ const Login = () => {
 
             })
             .catch(err => console.log(err.message))
+    }
+    const handleGoogleLogin = () => {
+        googleSignIn()
     }
     return (
         <div className="w-full min-h-screen hero ">
@@ -67,7 +70,7 @@ const Login = () => {
                                 <div className='rounded-full btn-ghost'>
                                     <FontAwesomeIcon icon={faFacebook} size="2xl" style={{ color: "#0d5de7", }} />
                                 </div>
-                                <div className='rounded-full btn-ghost'>
+                                <div onClick={googleSignIn} className='rounded-full btn-ghost'>
                                     <FontAwesomeIcon icon={faGoogle} size='2xl' style={{ color: "black", }} />
                                 </div>
                                 <div className='rounded-full btn-ghost'>

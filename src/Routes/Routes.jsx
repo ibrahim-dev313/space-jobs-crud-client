@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddJob from "../Components/AddJob/AddJob";
 import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
 import Home from "../Components/Home/Home";
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-job",
-                element: <PrivateRoute></PrivateRoute>
+                element: <PrivateRoute><AddJob /></PrivateRoute>
             },
             {
                 path: "/job/:id",
