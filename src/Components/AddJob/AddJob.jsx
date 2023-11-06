@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const AddJobPage = () => {
@@ -15,8 +15,12 @@ const AddJobPage = () => {
     const [jobCategory, setJobCategory] = useState("On Site");
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     const [applicationDeadline, setApplicationDeadline] = useState(new Date());
-    const jobApplicants = 0; // Default value
-
+    const jobApplicants = 0;
+    const formattedDate = jobPostingDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
     const handleCategoryClick = (category) => {
         setJobCategory(category);
     };
@@ -30,8 +34,8 @@ const AddJobPage = () => {
         const jobData = {
             pictureURL: form.pictureURL.value,
             jobTitle: form.jobTitle.value,
-            username: form.username.value,
-            postedBy: user.email,
+            postedByEmail: user.email,
+            postedByName: form.username.value,
             jobCategory,
             salaryRange: form.salaryRange.value,
             jobDescription: form.jobDescription.value,
@@ -40,15 +44,18 @@ const AddJobPage = () => {
             jobApplicants,
         };
 
+        // console.log(formattedDate);
         try {
-            const response = await axios.post("http://localhost:3000/job", jobData, {
+            const response = await axios.post("http://localhost:4000/job", jobData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
             console.log(response.data);
+            toast.success('Job Posted')
         } catch (error) {
             console.log(error);
+            toast.error("error")
         }
     };
 
@@ -167,6 +174,7 @@ const AddJobPage = () => {
                     <DatePicker
                         id="jobPostingDate"
                         name="jobPostingDate"
+                        dateFormat="dd/MM/yyyy"
                         className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                         selected={jobPostingDate}
                         onChange={(date) => setJobPostingDate(date)}
@@ -178,6 +186,7 @@ const AddJobPage = () => {
                     </label>
                     <DatePicker
                         id="applicationDeadline"
+                        dateFormat="dd/MM/yyyy"
                         name="applicationDeadline"
                         className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                         selected={applicationDeadline}

@@ -11,9 +11,9 @@ const Banner = () => {
                         <h1 className="text-5xl font-bold">Hello there</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
 
-                        <div className="flex items-center justify-between gap-6 p-0 rounded-full input">
+                        <div className="flex items-center justify-between p-0 m-5 rounded-full input input-bordered">
 
-                            <input type="text" placeholder="Search Jobs" className="w-full max-w-xs rounded-full input input-ghost" />
+                            <input type="text" placeholder="Search Jobs" className="w-full rounded-full full h-2/3 input input-ghost" />
 
                             <button className="p-0 m-0 btn btn-circle"><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#00040a", }} /></button>
                         </div>

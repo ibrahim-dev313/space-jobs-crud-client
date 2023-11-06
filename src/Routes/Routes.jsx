@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddJob from "../Components/AddJob/AddJob";
+import AllJobs from "../Components/AllJobs/AllJobs";
 import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
 import Home from "../Components/Home/Home";
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
             {
                 path: "/add-job",
                 element: <PrivateRoute><AddJob /></PrivateRoute>
+            },
+            {
+                path: "/all-jobs",
+                element: <PrivateRoute><AllJobs /></PrivateRoute>,
+                loader: () => fetch(`http://localhost:4000/jobs`)
             },
             {
                 path: "/job/:id",
