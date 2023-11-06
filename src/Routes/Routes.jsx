@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../Components/Authentication/Login";
+import Register from "../Components/Authentication/Register";
 import Home from "../Components/Home/Home";
 import Main from "../Layout/Main";
 import PrivateRoute from "./PrivateRoute";
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/signup",
-                // element: <Register></Register>
+                element: <Register></Register>
             },
             {
                 path: "/add-job",

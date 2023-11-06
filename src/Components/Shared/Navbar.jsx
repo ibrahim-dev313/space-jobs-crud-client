@@ -1,12 +1,15 @@
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
-    // const { user, logout } = useContext(AuthContext)
-    // const handleLogOut = () => {
-    //     logout()
-    //         .then(console.log("logged out successfully"))
-    //         .catch()
-    // }
+    const { user, logout } = useContext(AuthContext)
+    const handleLogOut = () => {
+        logout()
+            .then(toast.success("Logged Out Successfully"))
+            .catch()
+    }
     return (
         <>
             <div className="navbar bg-base-100">
@@ -35,18 +38,18 @@ const Navbar = () => {
                     <ul className="px-1 menu menu-horizontal">
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/all-jobs'>All Jobs</NavLink></li>
-                        <li><NavLink to='/applied-jobs'>Applied Jobs</NavLink></li>
-                        <li><NavLink to='/add-job'>Add a Job</NavLink></li>
-                        <li><NavLink to='/my-jobs'>My Jobs</NavLink></li>
 
 
-
-                        <>
-                            <li><NavLink to='/bookings'>Bookings</NavLink></li>
-                            <li><button className="" onClick={'handleLogOut'}>Log Out</button></li>
-                        </>
-                        <li ><NavLink to='/login' className="flex items-center justify-center">Login</NavLink></li>
-
+                        {
+                            user?.email ?
+                                <>
+                                    <li><NavLink to='/applied-jobs'>Applied Jobs</NavLink></li>
+                                    <li><NavLink to='/add-job'>Add a Job</NavLink></li>
+                                    <li><NavLink to='/my-jobs'>My Jobs</NavLink></li>
+                                    <li><button className="" onClick={handleLogOut}>Log Out</button></li>
+                                </> :
+                                <li ><NavLink to='/login' className="flex items-center justify-center">Login</NavLink></li>
+                        }
                     </ul>
                 </div>
                 <div className="hidden navbar-end lg:flex">
