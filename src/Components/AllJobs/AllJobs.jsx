@@ -56,7 +56,7 @@ const AllJobs = () => {
                             <td>{job.applicationDeadline}</td>
                             <td>{job.salaryRange}</td>
                             <th>
-                                <Link to={`/job/${job.id}`} className="btn btn-ghost btn-xs">
+                                <Link to={`/job/${job._id}`} className="btn btn-ghost btn-xs">
                                     Details
                                 </Link>
                             </th>

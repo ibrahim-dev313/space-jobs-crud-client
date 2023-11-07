@@ -1,6 +1,5 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
 const Banner = () => {
     return (
@@ -13,7 +12,7 @@ const Banner = () => {
 
                         <div className="flex items-center justify-between p-0 m-5 rounded-full input input-bordered">
 
-                            <input type="text" placeholder="Search Jobs" className="w-full rounded-full full h-2/3 input input-ghost" />
+                            <input type="text" placeholder="Search Jobs" className="w-full rounded-full full h-2/3 input input-" />
 
                             <button className="p-0 m-0 btn btn-circle"><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#00040a", }} /></button>
                         </div>
