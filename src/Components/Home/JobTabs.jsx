@@ -4,9 +4,17 @@ import 'react-tabs/style/react-tabs.css';
 
 const JobTabs = () => {
     const jobData = useLoaderData()
-    const categories = ['All Jobs', 'On-Site', 'Remote', 'Part-Time', 'Hybrid'];
-    const categoryJobs = {};
+    const categories = ['All Jobs', 'On Site', 'Remote', 'Part-Time', 'Hybrid'];
 
+    const categoryJobs = {};
+    const formatDateTime = (dateTimeString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" };
+        return new Date(dateTimeString).toLocaleString(undefined, options);
+    };
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleString(undefined, options);
+    };
     // Categorize jobs based on jobCategory
     categories.forEach(category => {
         if (category === 'All Jobs') {
@@ -43,8 +51,8 @@ const JobTabs = () => {
                                     <tr key={job._id}>
                                         <td>{job.postedByName}</td>
                                         <td>{job.jobTitle}</td>
-                                        <td>{job.jobPostingDate}</td>
-                                        <td>{job.applicationDeadline}</td>
+                                        <td>{formatDate(job.jobPostingDate)}</td>
+                                        <td>{formatDateTime(job.applicationDeadline)}</td>
                                         <td>{job.salaryRange}</td>
                                         <th>
                                             <Link to={`/job/${job._id}`} className="btn btn-ghost btn-xs">

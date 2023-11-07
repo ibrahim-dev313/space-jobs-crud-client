@@ -16,11 +16,7 @@ const AddJobPage = () => {
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     const [applicationDeadline, setApplicationDeadline] = useState(new Date());
     const jobApplicants = 0;
-    const formattedDate = jobPostingDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    });
+
     const handleCategoryClick = (category) => {
         setJobCategory(category);
     };

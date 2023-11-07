@@ -8,8 +8,7 @@ const JobDetails = () => {
     console.log(jobData);
     const { user } = useContext(AuthContext)
     // const [jobData, setJobData] = useState(null);
-    const [name, setName] = useState("Your Name");
-    const [email, setEmail] = useState("your@email.com");
+
     const [resumeLink, setResumeLink] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,8 +16,8 @@ const JobDetails = () => {
 
     const openModal = () => {
         if (jobData && jobData.postedByEmail == user.email) {
-            console.log('email same');
-            toast.error("Employer cannot apply")
+
+            toast.error("Employer of this job cannot apply.")
             return;
         }
 
