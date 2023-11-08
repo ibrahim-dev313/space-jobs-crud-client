@@ -11,7 +11,7 @@ const JobDetails = () => {
     const jobData = useLoaderData()
     // console.log(jobData._id);
     const [updatedJob, setUpdatedJob] = useState(jobData)
-
+    console.log(updatedJob);
     const { user } = useContext(AuthContext)
     // const [jobData, setJobData] = useState(null);
     const updateJobData = async () => {
@@ -87,7 +87,13 @@ const JobDetails = () => {
         <div>
             {updatedJob && (
                 <div className="m-5 bg-white rounded-xl">
-                    <img src={updatedJob.pictureURL} alt="Company Logo" className="w-full rounded-t-lg  h-96" />
+                    <div className="relative">
+                        <img src={updatedJob.pictureURL} alt="Company Logo" className="w-full rounded-t-lg h-96" />
+
+                        <div className="flex gap-4 rounded-none btn no-animation" >
+                            Company Logo: <img className="w-5 " src={updatedJob.company} alt="" />
+                        </div>
+                    </div>
                     <div className="p-4">
                         <h1 className="mb-2 text-3xl font-bold">{updatedJob.jobTitle}</h1>
                         <p>{updatedJob.description}</p>
