@@ -1,6 +1,6 @@
 # Client-Side Project README
 
-Welcome to the README for the client-side of [Your Project Name]!
+Welcome to the README for the client-side of [SpaceJobs]!
 
 ## Project Overview
 
