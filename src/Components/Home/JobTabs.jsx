@@ -1,9 +1,11 @@
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const JobTabs = () => {
-    const jobData = useLoaderData()
+    const jobData = useLoaderData();
     const categories = ['All Jobs', 'On Site', 'Remote', 'Part-Time', 'Hybrid'];
 
     const categoryJobs = {};
@@ -15,6 +17,7 @@ const JobTabs = () => {
         const options = { year: "numeric", month: "long", day: "numeric" };
         return new Date(dateString).toLocaleString(undefined, options);
     };
+
     // Categorize jobs based on jobCategory
     categories.forEach(category => {
         if (category === 'All Jobs') {
@@ -38,25 +41,25 @@ const JobTabs = () => {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th className='hidden md:block'>Name</th>
                                     <th>Job Title</th>
-                                    <th>Job Posting Date</th>
-                                    <th>Application Deadline</th>
-                                    <th>Salary Range</th>
+                                    <th className='hidden md:block'>Job Posting Date</th>
+                                    <th>Deadline</th>
+                                    <th>Salary</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {categoryJobs[category].map(job => (
                                     <tr key={job._id}>
-                                        <td>{job.postedByName}</td>
+                                        <td className='hidden md:block'>{job.postedByName}</td>
                                         <td>{job.jobTitle}</td>
-                                        <td>{formatDate(job.jobPostingDate)}</td>
+                                        <td className='hidden sm:table-cell'>{formatDate(job.jobPostingDate)}</td>
                                         <td>{formatDateTime(job.applicationDeadline)}</td>
                                         <td>{job.salaryRange}</td>
                                         <th>
                                             <Link to={`/job/${job._id}`} className="btn btn-ghost btn-xs">
-                                                Details
+                                                <FontAwesomeIcon icon={faCircleInfo} />
                                             </Link>
                                         </th>
                                     </tr>

@@ -87,7 +87,7 @@ const JobDetails = () => {
         <div>
             {updatedJob && (
                 <div className="m-5 bg-white rounded-xl">
-                    <img src={updatedJob.pictureURL} alt="Company Logo" className="object-cover w-full h-64 rounded-t-lg" />
+                    <img src={updatedJob.pictureURL} alt="Company Logo" className="w-full rounded-t-lg  h-96" />
                     <div className="p-4">
                         <h1 className="mb-2 text-3xl font-bold">{updatedJob.jobTitle}</h1>
                         <p>{updatedJob.description}</p>

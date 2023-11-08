@@ -42,7 +42,6 @@ const AppliedJobs = () => {
                 <thead>
                     <tr>
                         <th className="text-center">Job Title</th>
-                        <th className="text-center">Company</th>
                         <th className="text-center">Job Category</th>
                         <th className="text-center">Resume Link</th>
                     </tr>
@@ -51,7 +50,6 @@ const AppliedJobs = () => {
                     {filteredJobs.map((job) => (
                         <tr key={job._id}>
                             <td className="text-center">{job.appliedJob}</td>
-                            <td className="text-center">{job.appliedCompany}</td>
                             <td className="text-center">{job.appliedCategory}</td>
                             <td className="text-center">
                                 <a className='underline text-primary underline-offset-4' href={job.applicantResumeLink}>
