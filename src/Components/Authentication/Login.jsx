@@ -10,7 +10,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 const Login = () => {
     pageTitle("Login")
 
-    const { login, googleSignIn } = useContext(AuthContext)
+    const { login, googleLogin } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ const Login = () => {
                 const loggedInUser = res.user
                 console.log(loggedInUser);
                 toast.success('Logged In Successfully')
-
+                navigate(location?.state ? location?.state : '/')
             })
             .catch(err => {
                 console.log(err.message)
@@ -35,7 +35,20 @@ const Login = () => {
                 }
             })
     }
+    const handleGoogleSignIn = () => {
+        googleLogin()
+            .then(res => {
+                console.log(res.user)
+                toast.success("Log In Successful");
 
+                setTimeout(() => {
+                    navigate(location?.state ? location.state : "/");
+                }, 2000);
+
+            })
+
+            .catch(err => { console.error(err.message) })
+    }
     return (
         <div className="w-full min-h-screen hero ">
             <div className="flex-col w-full hero-content lg:flex-row ">
@@ -64,7 +77,7 @@ const Login = () => {
                             <p className="font-semibold text-center">Or</p>
                             <div className='flex items-center justify-center gap-4 my-4'>
 
-                                <div onClick={googleSignIn} className='flex items-center justify-center rounded-full btn-accent btn'>
+                                <div onClick={handleGoogleSignIn} className='flex items-center justify-center rounded-full btn-accent btn'>
                                     <div>
                                         <FontAwesomeIcon icon={faGoogle} size='2xl' style={{ color: "black", }} />
                                     </div>

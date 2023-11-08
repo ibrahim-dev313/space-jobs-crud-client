@@ -1,9 +1,9 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from 'react';
-import toast from "react-hot-toast";
 import { auth } from "../FIrebase/firebase.config";
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [photoURL, setPhotoURL] = useState(user?.photoURL)
@@ -15,10 +15,13 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
-    const googleSignIn = () => {
+
+    const googleLogin = () => {
         setLoading(true)
+
         const provider = new GoogleAuthProvider();
-        return signInWithPopup(auth, provider).then((res) => { toast.success('Logged In Successfully') })
+        return signInWithPopup(auth, provider)
+
     }
     const logout = () => {
         setLoading(true)
@@ -45,8 +48,8 @@ const AuthProvider = ({ children }) => {
         loading,
         registerUser,
         login,
-        googleSignIn,
-        logout, updateProfileInfo, setPhotoURL, photoURL
+
+        logout, updateProfileInfo, setPhotoURL, photoURL, googleLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>
