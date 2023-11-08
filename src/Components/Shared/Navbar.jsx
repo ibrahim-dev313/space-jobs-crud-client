@@ -30,6 +30,7 @@ const Navbar = () => {
                                         <li><NavLink to='/applied-jobs'>Applied Jobs</NavLink></li>
                                         <li><NavLink to='/add-job'>Add a Job</NavLink></li>
                                         <li><NavLink to='/my-jobs'>My Jobs</NavLink></li>
+                                        <li><NavLink to='/blogs'>Blogs</NavLink></li>
                                         <li><button className="" onClick={handleLogOut}>Log Out</button></li>
                                     </> :
                                     <li ><NavLink to='/login' className="flex items-center ">Login</NavLink></li>
