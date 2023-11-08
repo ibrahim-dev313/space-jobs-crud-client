@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Banner = () => {
     return (
         <div>
-            <div className="min-h-[50vh] hero bg-base-200">
+            <div className="min-h-[75vh] hero bg-base-200 rounded-xl">
                 <div className="text-center hero-content">
                     <div className="max-w-md">
                         <h1 className="text-5xl font-bold">Welcome to Your Dream Career Journey</h1>

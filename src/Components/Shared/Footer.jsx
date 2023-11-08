@@ -6,7 +6,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <>
-            <footer className="p-10 rounded-t-lg shadow-xl footer footer-center bg-base-200 text-base-content">
+            <footer className="p-10 shadow-xl rounded-t-xl footer footer-center bg-base-200 text-base-content">
                 <nav className="grid grid-flow-col gap-4">
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>

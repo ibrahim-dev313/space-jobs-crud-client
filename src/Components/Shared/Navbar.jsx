@@ -22,6 +22,7 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink to='/'>Home</NavLink></li>
                             <li><NavLink to='/all-jobs'>All Jobs</NavLink></li>
+                            <li><NavLink to='/blogs'>Blogs</NavLink></li>
 
 
                             {
@@ -30,7 +31,6 @@ const Navbar = () => {
                                         <li><NavLink to='/applied-jobs'>Applied Jobs</NavLink></li>
                                         <li><NavLink to='/add-job'>Add a Job</NavLink></li>
                                         <li><NavLink to='/my-jobs'>My Jobs</NavLink></li>
-                                        <li><NavLink to='/blogs'>Blogs</NavLink></li>
                                         <li><button className="" onClick={handleLogOut}>Log Out</button></li>
                                     </> :
                                     <li ><NavLink to='/login' className="flex items-center ">Login</NavLink></li>
@@ -45,6 +45,7 @@ const Navbar = () => {
                     <ul className="px-1 menu menu-horizontal">
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li><NavLink to='/all-jobs'>All Jobs</NavLink></li>
+                        <li><NavLink to='/blogs'>Blogs</NavLink></li>
 
 
                         {

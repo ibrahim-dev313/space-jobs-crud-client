@@ -1,7 +1,7 @@
 
 const CareerAdvice = () => {
     return (
-        <div className="py-12 bg-base-300">
+        <div className="pt-12 pb-24 bg-base-300 rounded-xl">
             <div className="container px-4 mx-auto">
                 <h2 className="mb-6 text-3xl font-semibold text-center text-gray-800">Career Advice and Tips</h2>
 
