@@ -10,7 +10,6 @@ const Register = () => {
     pageTitle("Sign Up")
 
     const { registerUser, updateProfileInfo, setPhotoURL } = useContext(AuthContext);
-    const { user } = useContext(AuthContext)
 
     const handleSignUp = e => {
         e.preventDefault()
