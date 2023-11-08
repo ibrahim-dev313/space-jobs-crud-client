@@ -1,5 +1,3 @@
-import { faFacebook, faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -82,21 +80,7 @@ const Register = () => {
                                 <button className="btn btn-accent">Sign Up</button>
                             </div>
                         </div>
-                        <div>
 
-                            <p className="font-semibold text-center">Or Sign In With</p>
-                            <div className='flex items-center justify-center gap-4 my-4'>
-                                <div className='rounded-full btn-ghost'>
-                                    <FontAwesomeIcon icon={faFacebook} size="2xl" style={{ color: "#0d5de7", }} />
-                                </div>
-                                <div className='rounded-full btn-ghost'>
-                                    <FontAwesomeIcon icon={faGoogle} size='2xl' style={{ color: "black", }} />
-                                </div>
-                                <div className='rounded-full btn-ghost'>
-                                    <FontAwesomeIcon icon={faLinkedin} size='2xl' style={{ color: "#0d5de7", }} />
-                                </div>
-                            </div>
-                        </div>
 
                     </form>
                 </div>

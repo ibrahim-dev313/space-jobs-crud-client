@@ -37,7 +37,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link to='/' className="h-full text-xl normal-case btn btn-ghost">
-                        <img className="w-2/3" src={''} alt="" />
+                        <img className="h-12 text-2xl font-bold" src="https://i.ibb.co/dj88QYw/20231106-225521-0000-removebg-preview.png" alt="" /> SpaceJobs
                     </Link>
                 </div>
                 <div className="hidden navbar-center lg:flex">
@@ -65,7 +65,7 @@ const Navbar = () => {
                                 <div className="dropdown dropdown-end">
                                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={user?.displayName}>
 
-                                        <img className="w-10 rounded-full " src={photoURL} />
+                                        <img className="w-10 rounded-full " src={photoURL || user?.photoURL} />
 
                                     </label>
                                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
