@@ -1,11 +1,13 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import generatePDF from 'react-to-pdf';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const AppliedJobs = () => {
     const appliedJobsData = useLoaderData();
     const { user } = useContext(AuthContext);
     const [searchValue, setSearchValue] = useState('');
+    const targetRef = useRef();
 
     const myAppliedJobs = appliedJobsData.filter((myjob) => myjob.applicantEmail === user.email);
     const [filteredJobs, setFilteredJobs] = useState(myAppliedJobs);
@@ -20,7 +22,7 @@ const AppliedJobs = () => {
     };
 
     return (
-        <div className="overflow-x-auto">
+        <div className="my-6 overflow-x-auto">
             <form className="flex items-center justify-between p-0 m-5 rounded-full input input-bordered">
                 <input
                     type="text"
@@ -31,7 +33,9 @@ const AppliedJobs = () => {
                     value={searchValue}
                 />
             </form>
-            <table className="table">
+            <h1 className='my-8 text-2xl font-bold text-center'>Applied Jobs</h1>
+
+            <table className="table" ref={targetRef}>
                 <thead>
                     <tr>
                         <th className="text-center">Job Title</th>
@@ -55,6 +59,12 @@ const AppliedJobs = () => {
                     ))}
                 </tbody>
             </table>
+            <div className='flex justify-center'>
+                <button className=' btn' onClick={() => generatePDF(targetRef, { filename: 'job-application-sumary.pdf' })}>Download Summary</button>
+                <div className='hidden'>
+                    Content to be included in the PDF
+                </div>
+            </div>
         </div>
     );
 };
