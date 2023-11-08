@@ -2,8 +2,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { pageTitle } from "../../Functions/DynamicTitle";
 
 const AllJobs = () => {
+    pageTitle("All Jobs")
+
     const jobsData = useLoaderData();
     console.log(jobsData);
     const [filteredJobs, setFilteredJobs] = useState(jobsData);

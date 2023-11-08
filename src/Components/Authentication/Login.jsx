@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { pageTitle } from '../../Functions/DynamicTitle';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const Login = () => {
+    pageTitle("Login")
 
     const { login, googleSignIn } = useContext(AuthContext)
     const location = useLocation()

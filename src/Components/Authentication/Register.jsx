@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { pageTitle } from '../../Functions/DynamicTitle';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 
 
 const Register = () => {
+    pageTitle("Sign Up")
+
     const { registerUser, updateProfileInfo, setPhotoURL } = useContext(AuthContext);
     const { user } = useContext(AuthContext)
 

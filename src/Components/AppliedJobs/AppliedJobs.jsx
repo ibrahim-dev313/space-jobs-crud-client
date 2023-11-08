@@ -1,9 +1,12 @@
 import { useContext, useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import generatePDF from 'react-to-pdf';
+import { pageTitle } from '../../Functions/DynamicTitle';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const AppliedJobs = () => {
+    pageTitle("Applied Jobs")
+
     const appliedJobsData = useLoaderData();
     const { user } = useContext(AuthContext);
     const [searchValue, setSearchValue] = useState('');

@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import toast, { Toaster } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { pageTitle } from "../../Functions/DynamicTitle";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 
@@ -18,6 +19,8 @@ const formatDate = (dateString) => {
 };
 
 const MyJobs = () => {
+    pageTitle("My Jobs")
+
     const jobData = useLoaderData();
     const { user } = useContext(AuthContext);
     const [myjobs, setMyJobs] = useState(jobData)

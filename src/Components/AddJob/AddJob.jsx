@@ -3,9 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast, { Toaster } from "react-hot-toast";
+import { pageTitle } from "../../Functions/DynamicTitle";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const AddJobPage = () => {
+    pageTitle("Add Job")
+
     const { user } = useContext(AuthContext)
     useEffect(() => {
         // Fetch user data or populate the list of users here
