@@ -7,23 +7,44 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 
 const Register = () => {
-    const { registerUser } = useContext(AuthContext);
+    const { registerUser, updateProfileInfo, setPhotoURL } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
 
-
-    const handleSignUp = (e) => {
+    const handleSignUp = e => {
         e.preventDefault()
-        const form = event.target
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, password, email);
+        const name = e.target.name.value;
+        const photoURL = e.target.photoURL.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        if (password.length < 6) {
+            return toast.error("Password should be at least 6 characters")
+        }
+        if (!/[A-Z]/.test(password)) {
+            return toast.error("Password should have at least 1 Capital Letter")
+
+        }
+        if (!/[$&+,:;=?@#|'<>.^*()%!-]/.test(password)) {
+            return toast.error("Password should be at least 1 special character")
+
+        }
+
+
         registerUser(email, password)
             .then(res => {
-                const user = res.user
-                console.log(user);
-                toast.success('Registration Successful')
+                console.log(res.user)
+                toast.success("Registration Successful");
+
+                updateProfileInfo(name, photoURL).then(() => setPhotoURL(photoURL)).then(err => console.log(err))
+                // setTimeout(() => {
+                //     navigate("/");
+
+                // }, 3000);
             })
-            .catch(err => console.log(err.message))
+            .catch(err => {
+                if (err.message == "Firebase: Error (auth/email-already-in-use).") {
+                    toast.error("This email is already used.")
+                }
+            })
     }
 
 
@@ -39,6 +60,12 @@ const Register = () => {
                                 <span className="font-semibold label-text">Name</span>
                             </label>
                             <input type="text" placeholder="Your Name" className="input input-bordered" name='name' required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="font-semibold label-text">Photo URL</span>
+                            </label>
+                            <input type="text" placeholder="Your Photo URL" className="input input-bordered" name='photoURL' required />
                         </div>
                         <div className="form-control">
                             <label className="label">

@@ -6,15 +6,20 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const JobDetails = () => {
     const jobData = useLoaderData()
-    console.log(jobData.jobCategory);
+    // console.log(jobData._id);
+    const [updatedJob, setUpdatedJob] = useState(jobData)
 
     const { user } = useContext(AuthContext)
     // const [jobData, setJobData] = useState(null);
-
+    const updateJobData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/job/${jobData._id}`);
+            setUpdatedJob(response.data);
+        } catch (error) {
+            console.error("Error updating job list:", error);
+        }
+    };
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-
     const openModal = () => {
         if (jobData && jobData.postedByEmail == user.email) {
 
@@ -29,7 +34,6 @@ const JobDetails = () => {
 
         setIsModalOpen(true);
     };
-
     const closeModal = () => {
         setIsModalOpen(false);
     };
@@ -55,6 +59,18 @@ const JobDetails = () => {
             });
             console.log(response.data);
             toast.success('Application Submitted')
+            // const incrementValue = 1;
+            axios.patch(`http://localhost:4000/job/${jobData._id}`, { increment: 1 })
+                .then((response) => {
+                    // Handle success
+                    console.log(response.data);
+                    updateJobData()
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error(error);
+                });
+
         } catch (error) {
             console.log(error);
             toast.error("error")
@@ -65,15 +81,15 @@ const JobDetails = () => {
 
     return (
         <div>
-            {jobData && (
+            {updatedJob && (
                 <div className="m-5 bg-white rounded-xl">
-                    <img src={jobData.pictureURL} alt="Company Logo" className="object-cover w-full h-64 rounded-t-lg" />
+                    <img src={updatedJob.pictureURL} alt="Company Logo" className="object-cover w-full h-64 rounded-t-lg" />
                     <div className="p-4">
-                        <h1 className="mb-2 text-3xl font-bold">{jobData.jobTitle}</h1>
-                        <p>{jobData.description}</p>
-                        <p>Salary Range: {jobData.salaryRange}</p>
-                        <p>Number of Applicants: {jobData.jobApplicants}</p>
-                        <p>Application Deadline: {jobData.applicationDeadline}</p>
+                        <h1 className="mb-2 text-3xl font-bold">{updatedJob.jobTitle}</h1>
+                        <p>{updatedJob.description}</p>
+                        <p>Salary Range: {updatedJob.salaryRange}</p>
+                        <p>Number of Applicants: {updatedJob.jobApplicants}</p>
+                        <p>Application Deadline: {updatedJob.applicationDeadline}</p>
                         <button onClick={openModal} className="mt-4 btn btn-block btn-accent">Apply</button>
                     </div>
                 </div>
