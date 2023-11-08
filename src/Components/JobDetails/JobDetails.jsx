@@ -15,6 +15,7 @@ const JobDetails = () => {
         try {
             const response = await axios.get(`http://localhost:4000/job/${jobData._id}`);
             setUpdatedJob(response.data);
+            setIsModalOpen(false)
         } catch (error) {
             console.error("Error updating job list:", error);
         }

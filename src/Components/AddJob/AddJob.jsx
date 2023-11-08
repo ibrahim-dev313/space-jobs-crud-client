@@ -176,7 +176,7 @@ const AddJobPage = () => {
                         className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                     />
                 </div>
-                <div className="mb-4">
+                <div className="grid items-center grid-cols-2 mb-4">
                     <label htmlFor="jobPostingDate" className="font-medium text-gray-600">
                         Job Posting Date:
                     </label>
@@ -189,7 +189,7 @@ const AddJobPage = () => {
                         onChange={(date) => setJobPostingDate(date)}
                     />
                 </div>
-                <div className="mb-4">
+                <div className="grid items-center grid-cols-2 mb-4">
                     <label htmlFor="applicationDeadline" className="font-medium text-gray-600">
                         Application Deadline:
                     </label>

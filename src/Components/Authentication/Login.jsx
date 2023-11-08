@@ -23,22 +23,17 @@ const Login = () => {
                 const loggedInUser = res.user
                 console.log(loggedInUser);
                 toast.success('Logged In Successfully')
-                // console.log(loggedInUser);
-                // const user = { email }
-                // axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
-                //     .then((res) => {
-                //         console.log(res.data);
-                //         if (res.data.success) {
-                //             // navigate(location?.state ? location?.state : '/')
-                //         }
-                //     })
 
             })
-            .catch(err => console.log(err.message))
+            .catch(err => {
+                console.log(err.message)
+                const error = err.message
+                if (error == "Firebase: Error (auth/invalid-login-credentials).") {
+                    toast.error('Incorrect Email & Password')
+                }
+            })
     }
-    const handleGoogleLogin = () => {
-        googleSignIn()
-    }
+
     return (
         <div className="w-full min-h-screen hero ">
             <div className="flex-col w-full hero-content lg:flex-row ">
