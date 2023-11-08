@@ -16,7 +16,7 @@ const JobDetails = () => {
     // const [jobData, setJobData] = useState(null);
     const updateJobData = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/job/${jobData._id}`);
+            const response = await axios.get(`https://spacejobs-mi1357.vercel.app/job/${jobData._id}`);
             setUpdatedJob(response.data);
             setIsModalOpen(false)
         } catch (error) {
@@ -56,7 +56,7 @@ const JobDetails = () => {
         console.log(appliedData);
 
         try {
-            const response = await axios.post("http://localhost:4000/applied-job", appliedData, {
+            const response = await axios.post("https://spacejobs-mi1357.vercel.app/applied-job", appliedData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -64,7 +64,7 @@ const JobDetails = () => {
             console.log(response.data);
             toast.success('Application Submitted')
             // const incrementValue = 1;
-            axios.patch(`http://localhost:4000/job/${jobData._id}`, { increment: 1 })
+            axios.patch(`https://spacejobs-mi1357.vercel.app/job/${jobData._id}`, { increment: 1 })
                 .then((response) => {
                     // Handle success
                     console.log(response.data);

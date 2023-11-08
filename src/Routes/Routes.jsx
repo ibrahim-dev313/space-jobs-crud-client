@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch(`http://localhost:4000/jobs`)
+                loader: () => fetch(`https://spacejobs-mi1357.vercel.app/jobs`)
             },
             {
                 path: "/login",
@@ -37,22 +37,23 @@ const router = createBrowserRouter([
             {
                 path: "/all-jobs",
                 element: <AllJobs />,
-                loader: () => fetch(`http://localhost:4000/jobs`)
+                loader: () => fetch(`https://spacejobs-mi1357.vercel.app/jobs`)
             },
             {
                 path: "/my-jobs",
                 element: <PrivateRoute><MyJobs /></PrivateRoute>,
-                loader: () => fetch(`http://localhost:4000/jobs`)
+                loader: () => fetch(`https://spacejobs-mi1357.vercel.app/jobs`)
             },
             {
                 path: "/job/:id",
                 element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:4000/job/${params.id}`)
+                loader: ({ params }) => fetch(`https://spacejobs-mi1357.vercel.app/job/${params.id}`)
+                //https://spacejobs-mi1357.vercel.app/
             },
             {
                 path: "/applied-jobs",
                 element: <PrivateRoute><AppliedJobs /></PrivateRoute>,
-                loader: () => fetch(`http://localhost:4000/applied-jobs`)
+                loader: () => fetch(`https://spacejobs-mi1357.vercel.app/applied-jobs`)
             },
         ]
     },

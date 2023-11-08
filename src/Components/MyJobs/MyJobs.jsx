@@ -35,7 +35,7 @@ const MyJobs = () => {
 
     const handleDeleteJob = (_id) => {
 
-        axios.delete(`http://localhost:4000/job/${_id}`)
+        axios.delete(`https://spacejobs-mi1357.vercel.app/job/${_id}`)
             .then((response) => {
                 console.log(response.data);
                 toast.success('Job Deleted Successfully')
@@ -48,7 +48,7 @@ const MyJobs = () => {
     };
     const updateJobList = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/jobs");
+            const response = await axios.get("https://spacejobs-mi1357.vercel.app/jobs");
             setMyJobs(response.data);
         } catch (error) {
             console.error("Error updating job list:", error);
@@ -92,7 +92,7 @@ const MyJobs = () => {
         };
 
         try {
-            const response = await axios.put(`http://localhost:4000/job/${singlejob._id}`, updatedJobData);
+            const response = await axios.put(`https://spacejobs-mi1357.vercel.app/job/${singlejob._id}`, updatedJobData);
             console.log(response.data.modifiedCount);
             if (response.data.modifiedCount != 0) {
                 toast.success('Job Updated Successfully')

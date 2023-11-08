@@ -46,7 +46,7 @@ const AddJobPage = () => {
 
         // console.log(formattedDate);
         try {
-            const response = await axios.post("http://localhost:4000/job", jobData, {
+            const response = await axios.post("https://spacejobs-mi1357.vercel.app/job", jobData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
