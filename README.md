@@ -1,6 +1,4 @@
-# Client-Side Project README
-
-Welcome to the README for the client-side of [SpaceJobs]!
+Welcome to the repository of SpaceJobs!
 
 ## Project Overview
 
