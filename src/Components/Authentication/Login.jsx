@@ -54,14 +54,13 @@ const Login = () => {
                                 <span className="font-semibold label-text">Password</span>
                             </label>
                             <input type="password" placeholder="Your Password" className="input input-bordered" name='password' required />
-                            <label className="label">
-                                <Link to={'/signup'} href="#" className="label-text-alt link link-hover">Register</Link>
-                            </label>
+
                         </div>
                         <div className="mt-6 form-control">
                             <button className="btn btn-accent">Login</button>
                         </div>
                         <div>
+                            <p className='mb-4'>Don't have an account? <Link to={'/signup'} href="#" className="underline text-primary underline-offset-4 link-hover">Register Here</Link></p>
                             <p className="font-semibold text-center">Or</p>
                             <div className='flex items-center justify-center gap-4 my-4'>
 

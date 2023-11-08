@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { pageTitle } from '../../Functions/DynamicTitle';
 import { AuthContext } from '../../Providers/AuthProvider';
 
@@ -82,6 +83,7 @@ const Register = () => {
                             <div className="mt-6 form-control">
                                 <button className="btn btn-accent">Sign Up</button>
                             </div>
+                            <p className='my-4'>Already have an account? <Link to={'/login'} href="#" className="underline text-primary underline-offset-4 link-hover">Login</Link></p>
                         </div>
 
 
