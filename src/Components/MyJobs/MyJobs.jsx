@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -25,6 +25,7 @@ const MyJobs = () => {
     const [jobCategory, setJobCategory] = useState("On Site");
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     const [singlejob, setsinglejob] = useState({})
+    const [newApplicationDeadline, setApplicationDeadline] = useState(new Date());
 
 
     const userJobs = myjobs.filter((job) => job.postedByEmail === user.email);
@@ -34,6 +35,7 @@ const MyJobs = () => {
         axios.delete(`http://localhost:4000/job/${_id}`)
             .then((response) => {
                 console.log(response.data);
+                toast.success('Job Deleted Successfully')
             })
             .catch((error) => {
                 console.log(error);
@@ -41,6 +43,15 @@ const MyJobs = () => {
         const updatedMyJobs = myjobs.filter(job => job._id !== _id);
         setMyJobs(updatedMyJobs);
     };
+    const updateJobList = async () => {
+        try {
+            const response = await axios.get("http://localhost:4000/jobs");
+            setMyJobs(response.data);
+        } catch (error) {
+            console.error("Error updating job list:", error);
+        }
+    };
+
     const handleOpenModal = (job) => {
         setIsModalOpen(true);
         console.log(job);
@@ -52,7 +63,6 @@ const MyJobs = () => {
         setIsModalOpen(false);
     };
 
-    const [applicationDeadline, setApplicationDeadline] = useState(new Date());
     const jobApplicants = 0;
 
     const handleCategoryClick = (category) => {
@@ -64,7 +74,7 @@ const MyJobs = () => {
         e.preventDefault();
 
         const form = e.target;
-        const jobData = {
+        const updatedJobData = {
             pictureURL: form.pictureURL.value,
             jobTitle: form.jobTitle.value,
             postedByEmail: user.email,
@@ -73,24 +83,23 @@ const MyJobs = () => {
             salaryRange: form.salaryRange.value,
             jobDescription: form.jobDescription.value,
             jobPostingDate: jobPostingDate,
-            applicationDeadline: applicationDeadline,
+            newApplicationDeadline: newApplicationDeadline,
             jobApplicants,
         };
 
-        // console.log(formattedDate);
         try {
-            const response = await axios.post("http://localhost:4000/job", jobData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            console.log(response.data);
-            toast.success('Job Updated')
+            const response = await axios.put(`http://localhost:4000/job/${singlejob._id}`, updatedJobData);
+            console.log(response.data.modifiedCount);
+            if (response.data.modifiedCount != 0) {
+                toast.success('Job Updated Successfully')
+                updateJobList()
+            }
         } catch (error) {
-            console.log(error);
-            toast.error("error")
+            console.error("Error updating job:", error);
+            // Handle the error, e.g., show an error message
         }
     };
+
     return (
         <div className="overflow-x-auto">
             <table className="table ">
@@ -248,7 +257,7 @@ const MyJobs = () => {
                                 name="jobPostingDate"
                                 dateFormat="dd/MM/yyyy"
                                 className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                                selected={new Date(singlejob.jobPostingDate)} // Set the default value using 'selected'
+                                selected={new Date(singlejob.jobPostingDate)}
                                 onChange={(date) => setJobPostingDate(date)}
                                 disabled
                             />
@@ -264,15 +273,30 @@ const MyJobs = () => {
                                 dateFormat="dd/MM/yyyy"
                                 name="applicationDeadline"
                                 className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                                selected={new Date(singlejob.applicationDeadline)} // Set the default value using 'selected'
+                                disabled
+                                selected={new Date(singlejob.applicationDeadline)}
+                                onChange={(date) => setApplicationDeadline(date)}
+                            />
+                        </div>
+                        <div className="flex items-center justify-between mb-4">
+                            <label htmlFor="applicationDeadline" className="font-medium text-gray-600">
+                                New Application Deadline:
+                            </label>
+
+                            <DatePicker
+                                id="newApplicationDeadline"
+                                dateFormat="dd/MM/yyyy"
+                                name="newApplicationDeadline"
+                                className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                                selected={newApplicationDeadline}
                                 onChange={(date) => setApplicationDeadline(date)}
                             />
                         </div>
 
                         <div className="flex gap-1">
-                            <button className="inline-flex items-center justify-center w-full px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out rounded-xl btn-warning group focus:shadow hover:bg-gray-800" onClick={handleCloseModal}>
+                            <div className="inline-flex items-center justify-center w-full px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out rounded-xl btn-warning group focus:shadow hover:bg-gray-800" onClick={handleCloseModal}>
                                 Close
-                            </button>
+                            </div>
                             <button
                                 type="submit"
                                 className="inline-flex items-center justify-center w-full px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out rounded-xl btn-accent group focus:shadow hover:bg-gray-800"
@@ -287,6 +311,7 @@ const MyJobs = () => {
 
                 </dialog>
             )}
+            <Toaster />
         </div>
     );
 };

@@ -32,6 +32,7 @@ const AddJobPage = () => {
             jobTitle: form.jobTitle.value,
             postedByEmail: user.email,
             postedByName: form.username.value,
+            company: form.company.value,
             jobCategory,
             salaryRange: form.salaryRange.value,
             jobDescription: form.jobDescription.value,
@@ -79,6 +80,18 @@ const AddJobPage = () => {
                         type="text"
                         id="jobTitle"
                         name="jobTitle"
+                        className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="companyName" className="font-medium text-gray-600">
+                        Company Name:
+                    </label>
+                    <input
+                        type="text"
+                        id="company"
+                        name="company"
                         className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                         required
                     />
