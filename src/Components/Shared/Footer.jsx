@@ -18,16 +18,16 @@ const Footer = () => {
                         <img className="h-12" src="https://i.ibb.co/dj88QYw/20231106-225521-0000-removebg-preview.png" alt="" /> SpaceJobs
                     </div>
                 </nav>
-                <div className="grid grid-flow-col gap-3 text-xl font-">
-                    <div>
+                <div className="grid grid-flow-row gap-3 text-xl font-">
+                    <div className='flex items-center justify-center gap-2'>
                         <FontAwesomeIcon icon={faMapMarker} />
                         <span>123 Space Avenue, Cosmos City</span>
                     </div>
-                    <div>
+                    <div className='flex items-center justify-center gap-2'>
                         <FontAwesomeIcon icon={faPhone} />
                         <span>+123 456 7890</span>
                     </div>
-                    <div>
+                    <div className='flex items-center justify-center gap-2'>
                         <FontAwesomeIcon icon={faEnvelope} />
                         <span>info@spacejobs.com</span>
                     </div>

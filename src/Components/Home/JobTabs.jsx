@@ -30,7 +30,7 @@ const JobTabs = () => {
     return (
         <div>
             <Tabs className='p-5 bg-base-100'>
-                <TabList className='flex flex-row items-center justify-center'>
+                <TabList className='flex flex-row items-center justify-center gap-3 text-xs md:text-xl menu navbar '>
                     {categories.map(category => (
                         <Tab key={category}>{category}</Tab>
                     ))}
@@ -41,11 +41,11 @@ const JobTabs = () => {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th className='hidden md:block'>Name</th>
+                                    <th className='hidden text-xs md:block'>Name</th>
                                     <th>Job Title</th>
-                                    <th className='hidden md:block'>Job Posting Date</th>
-                                    <th>Deadline</th>
-                                    <th>Salary</th>
+                                    <th className='hidden text-xs md:block'>Job Posting Date</th>
+                                    <th className='text-xs '>Deadline</th>
+                                    <th className='text-xs '>Salary</th>
                                     <th></th>
                                 </tr>
                             </thead>

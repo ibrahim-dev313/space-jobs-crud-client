@@ -89,7 +89,7 @@ const AddJobPage = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="companyName" className="font-medium text-gray-600">
-                        Company Name:
+                        Company Logo URL:
                     </label>
                     <input
                         type="text"

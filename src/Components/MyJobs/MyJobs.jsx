@@ -2,6 +2,8 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useContext, useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import the styles
 import DatePicker from "react-datepicker";
 import toast, { Toaster } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
@@ -34,17 +36,31 @@ const MyJobs = () => {
     const userJobs = myjobs.filter((job) => job.postedByEmail === user.email);
 
     const handleDeleteJob = (_id) => {
-
-        axios.delete(`https://spacejobs-mi1357.vercel.app/job/${_id}`)
-            .then((response) => {
-                console.log(response.data);
-                toast.success('Job Deleted Successfully')
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        const updatedMyJobs = myjobs.filter(job => job._id !== _id);
-        setMyJobs(updatedMyJobs);
+        confirmAlert({
+            title: 'Confirm Delete',
+            message: 'Are you sure you want to delete this job?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        axios.delete(`https://spacejobs-mi1357.vercel.app/job/${_id}`)
+                            .then((response) => {
+                                console.log(response.data);
+                                toast.success('Job Deleted Successfully')
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                        const updatedMyJobs = myjobs.filter(job => job._id !== _id);
+                        setMyJobs(updatedMyJobs);
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => { } // Do nothing if the user clicks "No"
+                }
+            ]
+        });
     };
     const updateJobList = async () => {
         try {
@@ -97,6 +113,7 @@ const MyJobs = () => {
             if (response.data.modifiedCount != 0) {
                 toast.success('Job Updated Successfully')
                 updateJobList()
+                handleCloseModal()
             }
         } catch (error) {
             console.error("Error updating job:", error);
@@ -171,7 +188,7 @@ const MyJobs = () => {
                         </div>
                         <div className="mb-4">
                             <label htmlFor="companyName" className="font-medium text-gray-600">
-                                Company Name:
+                                Company Logo URL:
                             </label>
                             <input
                                 type="text"
