@@ -1,4 +1,3 @@
-import { Toaster } from 'react-hot-toast';
 import { pageTitle } from '../../Functions/DynamicTitle';
 import Banner from './Banner';
 import CareerAdvice from './CareerAdvice';
@@ -13,7 +12,6 @@ const Home = () => {
             <JobTabs />
             <CareerAdvice></CareerAdvice>
             <JobAlertSubscription></JobAlertSubscription>
-            <Toaster />
         </div>
     );
 };

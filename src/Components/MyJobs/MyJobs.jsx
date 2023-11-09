@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import the styles
 import DatePicker from "react-datepicker";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { pageTitle } from "../../Functions/DynamicTitle";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -345,7 +345,6 @@ const MyJobs = () => {
 
                 </dialog>
             )}
-            <Toaster />
         </div>
     );
 };

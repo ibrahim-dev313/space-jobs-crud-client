@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { pageTitle } from "../../Functions/DynamicTitle";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -126,9 +126,7 @@ const JobDetails = () => {
                         </div>
                     </form>
                 </div>
-                <Toaster />
             </dialog>
-            <Toaster></Toaster>
         </div>
     );
 };
