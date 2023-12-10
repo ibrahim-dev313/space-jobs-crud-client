@@ -18,6 +18,6 @@ Here are the main features of [Your Project Name]:
 4. **Feature 4**: Job Employer can update the information of jobs from My Jobs Page.
 5. **Feature 5**: React-Hot-Toast is used to show alert instead of using browser alert.
 
-## Installation
+
 
 
